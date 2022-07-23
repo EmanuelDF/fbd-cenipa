@@ -6,11 +6,13 @@
 - FATOR_CONTRIBUINTE.csv - Informações sobre os fatores contribuinte das ocorrências que tiveram investigações finalizadas.
 - RECOMENDAÇÃO.csv - Informações sobre as recomendações de segurança geradas nas ocorrências.
 
-## Setando imagem mysql para uso:
+<img title="a title" alt="Alt text" src="/MER.png">
 
-`docker run -p 3306:3306 --name=mysql -d mysql/mysql-server:8.0.21
+### Setando imagem mysql para uso:
+
+```docker run -p 3306:3306 --name=mysql -d mysql/mysql-server:8.0.21
 docker logs mysql 2>&1 | grep GENERATED
 docker exec -it mysql mysql -uroot -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'mysql';
 update mysql.user set host = '%' where user='root';
-docker restart mysql`
+docker restart mysql
