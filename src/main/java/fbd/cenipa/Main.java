@@ -1,7 +1,14 @@
 package fbd.cenipa;
 
+import java.sql.Connection;
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        DBImport db = new DBImport();
+        Connection conn =
+                db.connect("jdbc:mysql://localhost:3306/cenipa", "root", "admin");
+        db.importData(conn, args[0]);
     }
+
 }
