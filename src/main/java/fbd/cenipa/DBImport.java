@@ -16,8 +16,7 @@ class DBImport {
                               String db_userid, String db_password) {
         Connection conn;
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(db_connect_str,
                     db_userid, db_password);
 
