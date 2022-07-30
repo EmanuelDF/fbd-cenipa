@@ -1,6 +1,6 @@
 DELIMITER $
 
-CREATE TRIGGER Tgr_inclui_ocorrencia AFTER INSERT
+CREATE TRIGGER incluir_ocorrencia AFTER INSERT
 ON cenipa.aeronave
 FOR EACH ROW
 BEGIN
