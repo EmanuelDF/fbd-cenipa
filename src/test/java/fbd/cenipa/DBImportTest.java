@@ -39,7 +39,7 @@ class DBImportTest {
         final Connection conn = null;
 
         // Run the test
-        dbImportUnderTest.importData(conn, "filename");
+        dbImportUnderTest.importData(conn);
 
         // Verify the results
     }

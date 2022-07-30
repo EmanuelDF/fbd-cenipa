@@ -1,14 +1,20 @@
 package fbd.cenipa;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Main {
 
     public static void main(String[] args) {
         DBImport db = new DBImport();
-        Connection conn =
-                db.connect("jdbc:mysql://192.168.0.2:3306/cenipa", "root", "mysql");
-        db.importData(conn, args[0]);
+        try {
+            Connection conn = DriverManager.getConnection
+                    ("jdbc:mysql://localhost:3306/test", "root", "mysql");
+            db.importData(conn);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

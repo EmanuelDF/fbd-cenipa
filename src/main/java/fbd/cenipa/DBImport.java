@@ -1,5 +1,11 @@
 package fbd.cenipa;
 
+import org.apache.ibatis.jdbc.ScriptRunner;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -28,43 +34,51 @@ public class DBImport {
         return conn;
     }
 
-    public void importData(Connection conn, String filename) {
+    public void importData(Connection conn) {
         Statement stmt;
         String query;
 
-        List<String> arquivos = new ArrayList<String>();
+        List<String> files = new ArrayList<String>();
 
-        arquivos.add("src/main/resources/files/aeronave.csv");
-        arquivos.add("src/main/resources/files/fator_contribuinte.csv");
-        arquivos.add("src/main/resources/files/ocorrencia_tipo.csv");
-        arquivos.add("src/main/resources/files/recomendacao.csv'");
-        arquivos.add("src/main/resources/files/ocorrencia.csv'");
+        files.add(getClass().getResource("/files/aeronave.csv").getPath());
+        files.add(getClass().getResource("/files/fator_contribuinte.csv").getPath());
+        files.add(getClass().getResource("/files/ocorrencia_tipo.csv").getPath());
+        files.add(getClass().getResource("/files/recomendacao.csv").getPath());
+        files.add(getClass().getResource("/files/ocorrencia.csv").getPath());
 
-        List<String> tabelas = new ArrayList<String>();
+        List<String> tables = new ArrayList<String>();
 
-        tabelas.add("aeronave");
-        tabelas.add("fator_contribuinte'");
-        tabelas.add("ocorrencia_tipo'");
-        tabelas.add("recomendacao'");
-        tabelas.add("ocorrencia'");
+        tables.add("aeronave");
+        tables.add("fator_contribuinte'");
+        tables.add("ocorrencia_tipo'");
+        tables.add("recomendacao'");
+        tables.add("ocorrencia'");
 
         try {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
-            for (int i = 0; i <= 4; i++) {
-                System.out.println("Importando dados para a tabela " + tabelas.get(i) + "...");
+//            runCreateScript(conn);
 
-                query = "LOAD DATA INFILE '" + arquivos.get(i) +
-                        "' INTO TABLE '" + tabelas.get(i) + "'(text, price);";
+            for (int i = 0; i <= 4; i++) {
+                System.out.println("Importing data into the table " + tables.get(i) + "...");
+
+                query = "LOAD DATA INFILE '" + files.get(i) +
+                        "' INTO TABLE " + tables.get(i) + ";";
                 stmt.executeUpdate(query);
 
-                System.out.println("Importação realizada com sucesso!");
+                System.out.println("Import performed successfully!");
             }
         } catch (Exception e) {
             e.printStackTrace();
             stmt = null;
         }
+    }
+
+    private void runCreateScript(Connection conn) throws FileNotFoundException {
+        ScriptRunner sr = new ScriptRunner(conn);
+        Reader reader = new BufferedReader(new FileReader(getClass().getResource("/create.sql").getPath()));
+        sr.runScript(reader);
     }
 
 }
