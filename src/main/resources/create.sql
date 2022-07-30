@@ -10,18 +10,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema cenipa
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `cenipa` ;
 
 -- -----------------------------------------------------
--- Schema cenipa
+-- Table `aeronave`
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `cenipa` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `cenipa` ;
-
--- -----------------------------------------------------
--- Table `cenipa`.`aeronave`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cenipa`.`aeronave` (
+CREATE TABLE IF NOT EXISTS `aeronave` (
   `codigo_ocorrencia2` INT NOT NULL,
   `aeronave_matricula` TEXT NULL DEFAULT NULL,
   `aeronave_operador_categoria` TEXT NULL DEFAULT NULL,
@@ -52,9 +45,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `cenipa`.`fator_contribuinte`
+-- Table `fator_contribuinte`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cenipa`.`fator_contribuinte` (
+CREATE TABLE IF NOT EXISTS `fator_contribuinte` (
   `codigo_ocorrencia3` INT NOT NULL,
   `fator_nome` TEXT NULL DEFAULT NULL,
   `fator_aspecto` TEXT NULL DEFAULT NULL,
@@ -67,9 +60,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `cenipa`.`ocorrencia_tipo`
+-- Table `ocorrencia_tipo`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cenipa`.`ocorrencia_tipo` (
+CREATE TABLE IF NOT EXISTS `ocorrencia_tipo` (
   `codigo_ocorrencia1` INT NOT NULL,
   `ocorrencia_tipo` TEXT NULL DEFAULT NULL,
   `ocorrencia_tipo_categoria` TEXT NULL DEFAULT NULL,
@@ -81,9 +74,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `cenipa`.`recomendacao`
+-- Table `recomendacao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cenipa`.`recomendacao` (
+CREATE TABLE IF NOT EXISTS `recomendacao` (
   `codigo_ocorrencia4` INT NOT NULL,
   `recomendacao_numero` TEXT NULL DEFAULT NULL,
   `recomendacao_dia_assinatura` TEXT NULL DEFAULT NULL,
@@ -100,9 +93,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `cenipa`.`ocorrencia`
+-- Table `ocorrencia`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cenipa`.`ocorrencia` (
+CREATE TABLE IF NOT EXISTS `ocorrencia` (
   `codigo_ocorrencia` INT NOT NULL,
   `codigo_ocorrencia1` INT NULL DEFAULT NULL,
   `codigo_ocorrencia2` INT NULL DEFAULT NULL,
@@ -132,27 +125,36 @@ CREATE TABLE IF NOT EXISTS `cenipa`.`ocorrencia` (
   INDEX `codigo_ocorrencia4_idx` (`codigo_ocorrencia4` ASC) VISIBLE,
   CONSTRAINT `codigo_ocorrencia1`
     FOREIGN KEY (`codigo_ocorrencia1`)
-    REFERENCES `cenipa`.`ocorrencia_tipo` (`codigo_ocorrencia1`)
+    REFERENCES `ocorrencia_tipo` (`codigo_ocorrencia1`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `codigo_ocorrencia2`
     FOREIGN KEY (`codigo_ocorrencia2`)
-    REFERENCES `cenipa`.`aeronave` (`codigo_ocorrencia2`)
+    REFERENCES `aeronave` (`codigo_ocorrencia2`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `codigo_ocorrencia3`
     FOREIGN KEY (`codigo_ocorrencia3`)
-    REFERENCES `cenipa`.`fator_contribuinte` (`codigo_ocorrencia3`)
+    REFERENCES `fator_contribuinte` (`codigo_ocorrencia3`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `codigo_ocorrencia4`
     FOREIGN KEY (`codigo_ocorrencia4`)
-    REFERENCES `cenipa`.`recomendacao` (`codigo_ocorrencia4`)
+    REFERENCES `recomendacao` (`codigo_ocorrencia4`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `ocorrencia_fatalidade_quantidade`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ocorrencia_fatalidade_quantidade` (
+  `ocorrencia_fatalidade_quantidade_tipo` INT NULL,
+  `ocorrencia_fatalidade_quantidade_qtd` TEXT NULL)
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
