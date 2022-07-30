@@ -34,11 +34,11 @@ public class DBImport {
 
         List<String> arquivos = new ArrayList<String>();
 
-        arquivos.add("/origem/aeronave.csv");
-        arquivos.add("/origem/fator_contribuinte.csv");
-        arquivos.add("/origem/ocorrencia_tipo.csv");
-        arquivos.add("/origem/recomendacao.csv'");
-        arquivos.add("/origem/ocorrencia.csv'");
+        arquivos.add("src/main/resources/files/aeronave.csv");
+        arquivos.add("src/main/resources/files/fator_contribuinte.csv");
+        arquivos.add("src/main/resources/files/ocorrencia_tipo.csv");
+        arquivos.add("src/main/resources/files/recomendacao.csv'");
+        arquivos.add("src/main/resources/files/ocorrencia.csv'");
 
         List<String> tabelas = new ArrayList<String>();
 
