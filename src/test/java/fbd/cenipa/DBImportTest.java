@@ -1,9 +1,12 @@
 package fbd.cenipa;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 class DBImportTest {
 
@@ -15,12 +18,19 @@ class DBImportTest {
     }
 
     @Test
-    void testConnect() {
+    void testConnect() throws ClassNotFoundException, SQLException {
         // Setup
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
         // Run the test
-        final Connection result = dbImportUnderTest.connect("db_connect_str", "db_userid", "db_password");
+        Connection con = DriverManager.getConnection
+                ("jdbc:mysql://localhost:3306/test", "root", "mysql");
 
         // Verify the results
+        Assertions.assertNotNull(con);
+
+        // Close JDBC connection
+        con.close();
     }
 
     @Test
