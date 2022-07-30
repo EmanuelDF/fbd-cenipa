@@ -6,7 +6,7 @@
 - FATOR_CONTRIBUINTE.csv - Informações sobre os fatores contribuinte das ocorrências que tiveram investigações finalizadas.
 - RECOMENDAÇÃO.csv - Informações sobre as recomendações de segurança geradas nas ocorrências.
 
-<img title="a title" alt="Alt text" src="/src/main/resources/MER.png">
+![Alt text](src/main/resources/mer.png "a title")
 
 ### Setando imagem mysql para uso:
 
