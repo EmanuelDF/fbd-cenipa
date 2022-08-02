@@ -1,4 +1,4 @@
-CREATE VIEW ocorrencias_fatais_aeronaves AS
+CREATE VIEW view_ocorrencias_fatais_por_aeronave AS
     SELECT a.codigo_ocorrencia2     AS ocorrencia,
     a.aeronave_registro_categoria   AS categoria,
     a.aeronave_tipo_veiculo         AS tipo_aeronave,
@@ -16,4 +16,4 @@ CREATE VIEW ocorrencias_fatais_aeronaves AS
     ON (a.codigo_ocorrencia2 = o.codigo_ocorrencia2)
  WHERE a.aeronave_fatalidades_total > 0;
 
-SELECT * FROM cenipa.ocorrencias_fatais_aeronaves;
+SELECT * FROM view_ocorrencias_fatais_por_aeronave;

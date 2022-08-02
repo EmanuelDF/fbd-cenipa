@@ -8,4 +8,4 @@ WHERE o.ocorrencia_classificacao = 'INCIDENTE GRAVE'
   AND SUBSTRING(o.ocorrencia_dia, 7, 10) = '2021'
 GROUP BY ot.ocorrencia_tipo;
 
-SELECT * FROM cenipa.ocorrencias_fatais_aeronaves;
+SELECT * FROM view_ocorrencias_graves_por_tipo_2021;

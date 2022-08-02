@@ -7,4 +7,4 @@ CREATE VIEW view_sumario_ocorrencias_por_tipo AS
     GROUP BY a.aeronave_tipo_operacao
     ORDER BY quantidade_ocorrencias DESC;
 
-SELECT * FROM cenipa.ocorrencias_fatais_aeronaves;
+SELECT * FROM view_sumario_ocorrencias_por_tipo;
