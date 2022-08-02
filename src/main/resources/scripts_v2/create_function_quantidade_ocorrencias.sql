@@ -4,7 +4,7 @@ CREATE FUNCTION quantidade_ocorrencias(tipoAeronave CHAR(70))
     DETERMINISTIC
 BEGIN
     DECLARE qtd INT;
-    SELECT SUM(a.aeronave_fatalidades_total) AS qtd_fatalidades
+    SELECT SUM(a.aeronave_fatalidades_total) AS quantidade_fatalidades
     FROM aeronave a
         INNER JOIN ocorrencia o
         ON (a.codigo_ocorrencia2 = o.codigo_ocorrencia2)
@@ -14,5 +14,6 @@ BEGIN
 END $$
 DELIMITER ;
 
-SELECT quantidade_ocorrencias('AVIÃO') AS quantidade_ocorrencias_por_aviao
+SELECT quantidade_ocorrencias('AVIÃO')
+    AS quantidade_ocorrencias_por_aviao
 FROM dual;
