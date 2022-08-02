@@ -58,7 +58,7 @@ public class DBImport {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE);
 
-//            runCreateScript(conn);
+            runCreateScript(conn);
 
             for (int i = 0; i <= 4; i++) {
                 System.out.println("Importing data into the table " + tables.get(i) + "...");

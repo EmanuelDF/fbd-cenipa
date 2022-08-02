@@ -16,3 +16,7 @@ docker exec -it mysql mysql -uroot -p
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'mysql';
 update mysql.user set host = '%' where user='root';
 docker restart mysql
+
+docker exec -it mysql /bin/bash
+SHOW VARIABLES LIKE 'secure_file_priv';
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=mysql -d mysql:tag --secure-file-priv=""
