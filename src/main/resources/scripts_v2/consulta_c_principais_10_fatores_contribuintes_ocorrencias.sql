@@ -1,4 +1,4 @@
-# c) Os 10 principais fatores contribuintes geradores de ocorrências de incidentes.
+# Os 10 principais fatores contribuintes geradores de ocorrências de incidentes.
 
 SELECT  fc.fator_area AS fator_area,
         fc.fator_nome AS fator_nome,

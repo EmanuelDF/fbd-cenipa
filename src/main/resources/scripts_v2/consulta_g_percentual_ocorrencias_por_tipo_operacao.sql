@@ -1,4 +1,4 @@
-// Percentual de ocorrências agrupadas por tipo de operação.
+# Percentual de ocorrências agrupadas por tipo de operação.
 
 SELECT  tipo_operacao,
         CONCAT(

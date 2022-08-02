@@ -1,4 +1,4 @@
-# e) Quantidade de ocorrências agrupadas por tipo de operação.
+# Quantidade de ocorrências agrupadas por tipo de operação.
 
 SELECT  a.aeronave_tipo_operacao    AS  tipo_operacao,
         COUNT(o.codigo_ocorrencia2) AS  quantidade_ocorrencias

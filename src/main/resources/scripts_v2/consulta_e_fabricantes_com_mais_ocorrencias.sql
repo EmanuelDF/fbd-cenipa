@@ -1,4 +1,4 @@
-# d) Fabricantes de aeronave com mais ocorrencias de acidente.
+# Fabricantes de aeronave com mais ocorrencias de acidente.
 
 SELECT  a.aeronave_fabricante,
         COUNT(o.codigo_ocorrencia2) AS quantidade_ocorrencias
