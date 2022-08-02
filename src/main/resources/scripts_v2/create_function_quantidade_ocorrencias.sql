@@ -1,15 +1,18 @@
 DELIMITER $$
-CREATE FUNCTION qtd_ocorrencias (tipoAeronave CHAR(70))
-RETURNS INT
-DETERMINISTIC
+CREATE FUNCTION quantidade_ocorrencias(tipoAeronave CHAR(70))
+    RETURNS INT
+    DETERMINISTIC
 BEGIN
- DECLARE qtd int;
-select 
-sum(a.aeronave_fatalidades_total) as qtd_fatalidades
- from aeronave a
- inner join ocorrencia o on(a.codigo_ocorrencia2 = o.codigo_ocorrencia2) 
- where a.aeronave_tipo_veiculo = tipoAeronave
- into qtd;
- return qtd;
+    DECLARE qtd INT;
+    SELECT SUM(a.aeronave_fatalidades_total) AS qtd_fatalidades
+    FROM aeronave a
+        INNER JOIN ocorrencia o
+        ON (a.codigo_ocorrencia2 = o.codigo_ocorrencia2)
+    WHERE a.aeronave_tipo_veiculo = tipoAeronave
+    INTO qtd;
+    RETURN qtd;
 END $$
-DELIMITER
+DELIMITER ;
+
+SELECT quantidade_ocorrencias('AVIÃO') AS quantidade_ocorrencias_por_aviao
+FROM dual;

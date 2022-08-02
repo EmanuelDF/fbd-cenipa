@@ -5,3 +5,5 @@ DELIMITER $$
     WHERE o.ocorrencia_uf = uf;
 END $$
 DELIMITER ;
+
+CALL ocorrencias_aeronave_uf('MG');

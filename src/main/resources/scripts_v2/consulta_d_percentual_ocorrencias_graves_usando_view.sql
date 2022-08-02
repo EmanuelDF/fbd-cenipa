@@ -1,4 +1,4 @@
-// b) Percentual de ocorrências graves por tipo.
+# Percentual de ocorrências graves por tipo.
 
 SELECT  motivo,
         CONCAT(

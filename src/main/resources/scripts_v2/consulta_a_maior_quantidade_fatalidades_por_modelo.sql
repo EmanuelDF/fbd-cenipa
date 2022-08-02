@@ -1,4 +1,4 @@
-// a) Modelos de aeronaves ordenados por maior quantidade de fatalidades.
+# Modelos de aeronaves ordenados por maior quantidade de fatalidades.
 
 SELECT  CONCAT(a.aeronave_tipo_veiculo,' ',a.aeronave_modelo) AS aeronave_modelo,
         SUM(a.aeronave_fatalidades_total) AS quantidade_fatalidades,

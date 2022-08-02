@@ -1,7 +1,7 @@
-// b) Ocorrências agrupadas por tipo, com classificação grave no ano de 2021.
+# Ocorrências agrupadas por tipo, com classificação grave no ano de 2021.
 
-SELECT  ot.ocorrencia_tipo as motivo,
-        COUNT(o.codigo_ocorrencia1) as quantidade_ocorrencias
+SELECT  ot.ocorrencia_tipo AS motivo,
+        COUNT(o.codigo_ocorrencia1) AS quantidade_ocorrencias
 FROM        ocorrencia_tipo ot
 INNER JOIN  ocorrencia o
         ON  (o.codigo_ocorrencia1 = ot.codigo_ocorrencia1)

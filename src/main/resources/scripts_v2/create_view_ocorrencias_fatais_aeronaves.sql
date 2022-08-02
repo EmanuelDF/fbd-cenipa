@@ -1,12 +1,19 @@
-CREATE VIEW view_ocorrencias_fatais_aeronaves AS
-SELECT  ot.ocorrencia_tipo          AS motivo,
-        COUNT(o.codigo_ocorrencia1) AS quantidade_ocorrencias
-FROM ocorrencia_tipo ot
-        INNER JOIN ocorrencia o
-        ON (o.codigo_ocorrencia1 = ot.codigo_ocorrencia1)
-WHERE o.ocorrencia_classificacao = 'INCIDENTE GRAVE'
-  AND SUBSTRING(o.ocorrencia_dia, 7, 10) = '2021'
-GROUP BY ot.ocorrencia_tipo;
+CREATE VIEW ocorrencias_fatais_aeronaves AS
+    SELECT a.codigo_ocorrencia2     AS ocorrencia,
+    a.aeronave_registro_categoria   AS categoria,
+    a.aeronave_tipo_veiculo         AS tipo_aeronave,
+    a.aeronave_fabricante           AS fabricante,
+    a.aeronave_modelo               AS modelo,
+    a.aeronave_motor_quantidade     AS motor,
+    a.aeronave_pais_fabricante      AS pais_fabricante,
+    a.aeronave_tipo_operacao        AS tipo_operacao,
+    a.aeronave_fatalidades_total    AS qtd_fatalidades,
+    o.ocorrencia_pais               AS local_ocorrencia,
+    o.investigacao_aeronave_liberada AS aeronave_liberada,
+    o.divulgacao_dia_publicacao     AS divulgacao_ocorrencia
+ FROM       aeronave a
+ INNER JOIN ocorrencia o
+    ON (a.codigo_ocorrencia2 = o.codigo_ocorrencia2)
+ WHERE a.aeronave_fatalidades_total > 0;
 
-SELECT *
-FROM cenipa.ocorrencias_fatais_aeronaves;
+SELECT * FROM cenipa.ocorrencias_fatais_aeronaves;
